@@ -338,7 +338,14 @@ export interface CallContract {
   inputAssets?: TestInputAsset[]
 }
 
-export interface CallContractResult {
+export interface CallContractFailed {
+  error: string
+  type: string
+}
+
+export type CallContractResult = CallContractFailed | CallContractSucceeded
+
+export interface CallContractSucceeded {
   returns: Val[]
   /** @format int32 */
   gasUsed: number
@@ -346,6 +353,7 @@ export interface CallContractResult {
   txInputs: string[]
   txOutputs: Output[]
   events: ContractEventByTxId[]
+  type: string
 }
 
 export interface ChainInfo {
